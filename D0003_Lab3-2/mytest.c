@@ -189,7 +189,7 @@ void button(int pos)
 	while(true)
 	{
 		lock(&mutexButton);
-		printAt(counterButton, 3);
+		printAt(counterButton, 4);
 	}
 	
 	

@@ -297,7 +297,7 @@ Disassembly of section .text:
  248:	00 0c       	add	r0, r0
  24a:	88 0b       	sbc	r24, r24
  24c:	99 0b       	sbc	r25, r25
- 24e:	43 e0       	ldi	r20, 0x03	; 3
+ 24e:	44 e0       	ldi	r20, 0x04	; 4
  250:	50 e0       	ldi	r21, 0x00	; 0
  252:	0e 94 d8 00 	call	0x1b0	; 0x1b0 <printAt>
  256:	ef cf       	rjmp	.-34     	; 0x236 <button>
