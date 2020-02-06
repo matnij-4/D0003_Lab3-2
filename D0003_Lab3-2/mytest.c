@@ -150,6 +150,8 @@ void printAt(long num, int pos) {
 void blink(void)
 {
 	
+	bool halftime = true;
+	
 	// Loop to make the LCD blink.
 	while(true)
 	{
@@ -157,9 +159,13 @@ void blink(void)
 		//lock the mutex or else it cat get clock blink var.
 		lock(&mutexBlink);
 		
+		if(halftime)
+		{
+			halftime = false;
+			continue;
+		}
 		
 		//Will start the blinking if 1 sec have passed. 20 * 50ms = 1s
-
 		if(LCDDR3 != 0)
 		{
 			//Turn in off
@@ -170,8 +176,8 @@ void blink(void)
 			//Turn it on.
 			LCDDR3 = 0x1;
 		}
-			
-			
+		
+		halftime = true;
 		
 	}
 }

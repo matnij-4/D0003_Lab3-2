@@ -82,7 +82,7 @@ static void enqueue(thread p, thread *queue) {
 		thread oldQ = *queue;
 		p->next = oldQ;
 		
-		//Put the new thred first.
+		//Put the new threads first.
 		*queue = p;
 	}
 }
