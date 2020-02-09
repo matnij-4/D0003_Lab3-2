@@ -48,25 +48,9 @@ static void initialize(void) {
 	EIMSK = (1 << PCIE1);
 	PCMSK1 = (1 << PCINT15);
 	
-	
-	// The clock settings. 
-	
-	//OC1A is set high on compare match.
-	TCCR1A = (1 << COM1A0) | (1 << COM1A1);
-	
-	// Set timer to CTC and prescale Factor on 1024.
-	TCCR1B = (1 << WGM12) | (1 << CS10) |(1 << CS12);
-	
-	// Set Value to around 1s.
-	OCR1A = 3906;
-	
-	//clearing the TCNT1 register during initialization.
-	TCNT1 = 0x0;
-	
-	//Compare a match interrupt Enable.
-	TIMSK1 = (1 << OCIE1A);
-	
     initialized = 1;
+	
+	
 }
 
 static void enqueue(thread p, thread *queue) {
@@ -86,6 +70,7 @@ static void enqueue(thread p, thread *queue) {
 		*queue = p;
 	}
 }
+
 
 
 static thread dequeue(thread *queue) {
@@ -129,11 +114,16 @@ void spawn(void (* function)(int), int arg) {
     ENABLE();
 }
 
-void yield(void) {
-	ENABLE();
-	enqueue(current, &readyQ);
-	dispatch(dequeue(&readyQ));
-	DISABLE();
+void yield(void)
+{
+	//See if it is ready.
+	if(readyQ)
+	{
+		//See to it that the Current is not runed but the new one insted.
+		thread next = dequeue(&readyQ);
+		enqueue(current, &readyQ);
+		dispatch(next);
+	}
 }
 
 void lock(mutex *m) 

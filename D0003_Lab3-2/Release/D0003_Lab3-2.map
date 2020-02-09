@@ -255,7 +255,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0x742
+.text           0x00000000      0x748
  *(.vectors)
  .vectors       0x00000000       0x5c C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.3.300/gcc/dev/atmega169p/avr5/crtatmega169p.o
                 0x00000000                __vector_default
@@ -337,60 +337,63 @@ END GROUP
                 0x00000096                __vector_20
                 0x0000009a                . = ALIGN (0x2)
  *(.text.*)
- .text.LCDInit  0x0000009a       0x1a mytest.o
-                0x0000009a                LCDInit
+ .text.blink    0x0000009a       0x2a mytest.o
+                0x0000009a                blink
+ .text.LCDInit  0x000000c4       0x1a mytest.o
+                0x000000c4                LCDInit
  .text.writeChar
-                0x000000b4       0x9e mytest.o
-                0x000000b4                writeChar
+                0x000000de       0x9e mytest.o
+                0x000000de                writeChar
  .text.is_prime
-                0x00000152       0x5e mytest.o
-                0x00000152                is_prime
- .text.printAt  0x000001b0       0x86 mytest.o
-                0x000001b0                printAt
- .text.button   0x00000236       0x22 mytest.o
-                0x00000236                button
+                0x0000017c       0x5e mytest.o
+                0x0000017c                is_prime
+ .text.printAt  0x000001da       0x86 mytest.o
+                0x000001da                printAt
+ .text.button   0x00000260       0x22 mytest.o
+                0x00000260                button
  .text.computePrimes
-                0x00000258       0x2c mytest.o
-                0x00000258                computePrimes
- .text.blink    0x00000284       0x2a mytest.o
-                0x00000284                blink
+                0x00000282       0x2c mytest.o
+                0x00000282                computePrimes
+ .text.timmerInit
+                0x000002ae       0x28 mytest.o
+                0x000002ae                timmerInit
  .text.startup.main
-                0x000002ae       0x3a mytest.o
-                0x000002ae                main
+                0x000002d6       0x42 mytest.o
+                0x000002d6                main
  .text.__vector_7
-                0x000002e8       0x50 mytest.o
-                0x000002e8                __vector_7
+                0x00000318       0x50 mytest.o
+                0x00000318                __vector_7
  .text.__vector_3
-                0x00000338       0x66 mytest.o
-                0x00000338                __vector_3
+                0x00000368       0x66 mytest.o
+                0x00000368                __vector_3
  .text.dispatch
-                0x0000039e       0x40 tinythreads.o
- .text.spawn    0x000003de      0x164 tinythreads.o
-                0x000003de                spawn
- .text.yield    0x00000542       0x3a tinythreads.o
-                0x00000542                yield
- .text.lock     0x0000057c       0x60 tinythreads.o
-                0x0000057c                lock
- .text.unlock   0x000005dc       0x5e tinythreads.o
-                0x000005dc                unlock
+                0x000003ce       0x40 tinythreads.o
+ .text.spawn    0x0000040e      0x13e tinythreads.o
+                0x0000040e                spawn
+ .text.yield    0x0000054c       0x36 tinythreads.o
+                0x0000054c                yield
+ .text.lock     0x00000582       0x60 tinythreads.o
+                0x00000582                lock
+ .text.unlock   0x000005e2       0x5e tinythreads.o
+                0x000005e2                unlock
  .text.libgcc.div
-                0x0000063a       0x2e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodsi4.o)
-                0x0000063a                __divmodsi4
+                0x00000640       0x2e c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_divmodsi4.o)
+                0x00000640                __divmodsi4
  .text.libgcc.div
-                0x00000668       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_negsi2.o)
-                0x00000668                __negsi2
+                0x0000066e       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_negsi2.o)
+                0x0000066e                __negsi2
  .text.libgcc.div
-                0x00000678       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
-                0x00000678                __udivmodsi4
+                0x0000067e       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_udivmodsi4.o)
+                0x0000067e                __udivmodsi4
  .text.avr-libc
-                0x000006bc       0x82 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(setjmp.o)
-                0x000006bc                setjmp
-                0x000006fc                longjmp
-                0x0000073e                . = ALIGN (0x2)
+                0x000006c2       0x82 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5\libc.a(setjmp.o)
+                0x000006c2                setjmp
+                0x00000702                longjmp
+                0x00000744                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x0000073e        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
-                0x0000073e                _exit
-                0x0000073e                exit
+ .fini9         0x00000744        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+                0x00000744                _exit
+                0x00000744                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -409,11 +412,11 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x0000073e        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
+ .fini0         0x00000744        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr5\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000742                _etext = .
+                0x00000748                _etext = .
 
-.data           0x00800100       0x18 load address 0x00000742
+.data           0x00800100       0x18 load address 0x00000748
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
@@ -455,8 +458,8 @@ END GROUP
                 0x00800128                initp
                 0x00800195                threads
                 0x00800349                PROVIDE (__bss_end, .)
-                0x00000742                __data_load_start = LOADADDR (.data)
-                0x0000075a                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000748                __data_load_start = LOADADDR (.data)
+                0x00000760                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800349        0x0
                 [!provide]                PROVIDE (__noinit_start, .)

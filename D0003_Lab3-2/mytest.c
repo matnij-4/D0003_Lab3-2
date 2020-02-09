@@ -147,9 +147,9 @@ void printAt(long num, int pos) {
 }
 
 //Make one of the segments of the LCD blink.
-void blink(void)
+void blink(int none)
 {
-	
+	//Just a flag so it dose not blink as often.
 	bool halftime = true;
 	
 	// Loop to make the LCD blink.
@@ -159,6 +159,7 @@ void blink(void)
 		//lock the mutex or else it cat get clock blink var.
 		lock(&mutexBlink);
 		
+		//Next loop if it is to fast with the blink.
 		if(halftime)
 		{
 			halftime = false;
@@ -205,30 +206,60 @@ void computePrimes(int pos) {
 	}
 }
 
+//Timer setting.
+void timmerInit(void)
+{
+		// The clock settings.
+		
+		//OC1A is set high on compare match.
+		TCCR1A = (1 << COM1A0) | (1 << COM1A1);
+		
+		// Set timer to CTC and prescale Factor on 1024.
+		TCCR1B = (1 << WGM12) | (1 << CS10) |(1 << CS12);
+		
+		// Set Value to around 1s.
+		OCR1A = 3906;
+		
+		//clearing the TCNT1 register during initialization.
+		TCNT1 = 0x0;
+		
+		//Compare a match interrupt Enable.
+		TIMSK1 = (1 << OCIE1A);
+	
+}
+
+
 int main() {
 	
+	//Prescaler
 	CLKPR = 0x80;
 	CLKPR = 0x00;
 	
+	//LCD Init
 	LCDInit();
 	
 	lock(&mutexBlink);
 	lock(&mutexButton);
 	
-	spawn(computePrimes, 0);
+	//Init the Timer.
+	timmerInit();
+	
+	
+	spawn(blink, 0);
 	spawn(button, 3);
-	blink();
+	computePrimes(0);
 	
 }
 
 
-
+//Yield to blink if time is right.
 ISR(TIMER1_COMPA_vect) {
 	unlock(&mutexBlink);
 	yield();
 }
 
 
+//If button is pressed Yield to Button.
 ISR(PCINT1_vect){
 	//Read the pin.
 	if((PINB >> 7) == 0) {
